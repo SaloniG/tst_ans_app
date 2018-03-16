@@ -1,0 +1,32 @@
+---  
+#- hosts: all
+ # gather_facts: true 
+  #roles: 
+   # - name: fetch_info 
+# Setup front-end load balancer tier  
+- name: setup load-balancer tier 
+  hosts: all
+  become: yes 
+  roles: 
+    - {name: base-config, tags: base-config} 
+    - {name: lb-tier, tags: [haproxy]} 
+ 
+ 
+# Setup application servers tier 
+- name: setup app tier 
+  hosts: all
+  become: yes 
+  gather_facts: false 
+  roles: 
+    - {name: base-config, tags: base-config} 
+    - {name: app-tier, tags: [tomcat]} 
+
+ 
+# Setup database tier  
+- name: setup database tier 
+  become: yes 
+  hosts: all
+  roles: 
+    - {name: base-config, tags: base-config} 
+    - {name: postgresql, tags: [postgres]} 
+

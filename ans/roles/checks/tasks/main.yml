@@ -1,0 +1,6 @@
+---
+# tasks file for checks
+- name: check tomcat serving via haproxy 
+  uri: 
+    url: http://frontend1.b1da.example.opentlc.com/ansible 
+

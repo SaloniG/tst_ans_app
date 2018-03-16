@@ -1,0 +1,8 @@
+---
+# vars file for postgresql
+postgresql_databases: 
+  - name: test_db 
+postgresql_users: 
+  - name: db_user 
+    password: "{{ pass }}"
+
